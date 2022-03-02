@@ -29,7 +29,16 @@ namespace MyConsoleNoteBook
 
         private static void AddRecord()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Добавление новой  записи:");
+            string content = GetStringConsole("Введите  контент  записи");
+            try
+            {
+                RecordService.AddRecord(content, UserService.UserAuthorizationId);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         private static void GetRecord()

@@ -9,5 +9,10 @@ namespace MyConsoleNoteBook
         {
             throw new NotImplementedException();
         }
+
+        internal static void AddRecord(string content, int userAuthorizationId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
