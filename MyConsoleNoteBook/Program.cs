@@ -15,7 +15,9 @@ namespace MyConsoleNoteBook
                 switch(Console.ReadLine().ToLower().TrimStart().TrimEnd())
                 {
                     case "log-in": Authorization(); break;
+                    case "registration": Registration(); break;
                     case "exit": return;
+
                     default: Console.WriteLine("команда не опознана"); break;
                 }
             }
@@ -25,9 +27,11 @@ namespace MyConsoleNoteBook
         {
             string exit = "exit";
             string login = "log-in"; // команды
+            string registration = "registration";
 
             Console.WriteLine($"Для выхода из программы введите \"{exit}\"");
             Console.WriteLine($"Для входа в систему  введите  \"{login}\"");
+            Console.WriteLine($"Для регистрации в системе  введите  \"{registration}\"");
         }
 
         private static void Authorization()
