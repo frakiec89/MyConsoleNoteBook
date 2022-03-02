@@ -15,9 +15,26 @@ namespace MyConsoleNoteBook
             throw new NotImplementedException();
         }
 
-        internal static void AddUser(string name, string login, string password)
+        public static void AddUser(string name, string login, string password)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using DB.MsSqlContext db = new DB.MsSqlContext();
+                db.Users.Add(
+                    new DB.User()
+                    {
+                        Password = password,
+                        Login = login,
+                        UserName = name,
+                        DateRegistration = DateTime.Now
+                    }
+                    );
+                db.SaveChanges(); // отправить  объект  в  бд 
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ошибка  добавление  в  базу данных");
+            }
         }
 
         internal static bool Authorization(string login, string password, out string name)
