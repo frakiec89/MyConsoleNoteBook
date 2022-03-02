@@ -6,6 +6,9 @@ namespace MyConsoleNoteBook
 {
     internal class UserService
     {
+        public static int UserAuthorizationId { get;  private set; } // кука 
+
+
         /// <summary>
         /// проверяет повторение  пользователя в  бд
         /// </summary>
@@ -49,7 +52,6 @@ namespace MyConsoleNoteBook
 
         internal static bool Authorization(string login, string password, out string name)
         {
-
             try
             {
                 name = "пользователь не найден";
@@ -57,19 +59,16 @@ namespace MyConsoleNoteBook
                 var f =    db.Users.Any(x => x.Login == login && x.Password == password);
                 if (f == true)
                 {
-                    name = db.Users.Single(x => x.Login == login).UserName;
+                    var us = db.Users.Single(x => x.Login == login);
+                    name = us.UserName;
+                    UserAuthorizationId = us.UserId; // запомнил  кто  зашел 
                 }
-
                 return f;
             }
             catch (Exception ex)
             {
                 throw new Exception("Ошибка  обращения  к базе данных");
             }
-
-
         }
-
-       
     }
 }
