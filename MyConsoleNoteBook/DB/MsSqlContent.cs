@@ -1,22 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
+
 
 namespace MyConsoleNoteBook.DB
 {
-    public class MsSqlContent
+    public class MsSqlContext : DbContext
     {
-        static  string server = "192.168.10.134";
-        static string database = "Ahtyamov_for_IS-20_02_notebook";
+        static string server = "192.168.10.134";
+        static string database = "Ahtyamov_for_IS-20_02_notebook"; // новая -  у каждого  своя
         static string user = "stud";
         static string password = "stud";
+
+        public MsSqlContext() { }
+        
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+           optionsBuilder.UseSqlServer(GetConnectionString(server,database,user,password));
+        }
 
 
         private string GetConnectionString (string server , string database, string user, string password)
         {
             return $"Server = {server}; Database={database};User Id = {user}; Password={password}";
         }
+
+
+        public DbSet<User> Users { get; set; }
     }
 }
