@@ -12,7 +12,6 @@ namespace MyConsoleNoteBook.DB
         public MsSqlContext() {
         
         }
-        
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -25,8 +24,10 @@ namespace MyConsoleNoteBook.DB
             return $"Server = {server}; Database={database};User Id = {user}; Password={password}; connect timeout=5;";
         }
 
-
         public DbSet<User> Users { get; set; }
+        public DbSet<Record> Records { get; set; }
+
+
     }
 }
 
