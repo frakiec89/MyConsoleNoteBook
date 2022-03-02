@@ -28,3 +28,7 @@ namespace MyConsoleNoteBook.DB
         public DbSet<User> Users { get; set; }
     }
 }
+
+//команжы миграции 
+//add-magration 
+//update-database
