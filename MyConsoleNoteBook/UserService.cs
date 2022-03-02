@@ -49,7 +49,25 @@ namespace MyConsoleNoteBook
 
         internal static bool Authorization(string login, string password, out string name)
         {
-            throw new NotImplementedException();
+
+            try
+            {
+                name = "пользователь не найден";
+                using DB.MsSqlContext db = new DB.MsSqlContext();
+                var f =    db.Users.Any(x => x.Login == login && x.Password == password);
+                if (f == true)
+                {
+                    name = db.Users.Single(x => x.Login == login).UserName;
+                }
+
+                return f;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ошибка  обращения  к базе данных");
+            }
+
+
         }
 
        
