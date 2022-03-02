@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace MyConsoleNoteBook
 {
@@ -16,10 +17,41 @@ namespace MyConsoleNoteBook
                 {
                     case "log-in": Authorization(); break;
                     case "registration": Registration(); break;
+                    case "getrecord": GetRecord(); break;
+                    case "addrecord": AddRecord(); break;
                     case "exit": return;
+
 
                     default: Console.WriteLine("команда не опознана"); break;
                 }
+            }
+        }
+
+        private static void AddRecord()
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void GetRecord()
+        {
+            Console.WriteLine("Активные записи:");
+            try
+            {
+                List<string> list = RecordService.GetAllUserRecord(UserService.UserAuthorizationId);
+                
+                if(list.Count == 0)
+                {
+                    Console.WriteLine("Нам очень жаль  но вы пока не добавили ни одной записи (");
+                }
+
+                foreach (string record in list)
+                {
+                    Console.WriteLine(record);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);  
             }
         }
 
