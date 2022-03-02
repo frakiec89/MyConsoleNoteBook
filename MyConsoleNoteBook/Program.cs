@@ -36,7 +36,25 @@ namespace MyConsoleNoteBook
 
         private static void Authorization()
         {
-
+            Console.WriteLine("Вход  в систему:");
+            string login = GetStringConsole("Укажите логин пользователя");
+            string password = GetStringConsole("Укажите пароль");
+            string name = string.Empty;
+            try
+            {
+                if (UserService.Authorization(login, password, out name))
+                {
+                    Console.WriteLine($"добро пожаловать {name}");
+                }
+                else
+                {
+                    Console.WriteLine($"Нам очень жаль но пользователь не  найден");
+                }
+            }
+            catch (Exception ex)
+            {
+               Console.WriteLine(ex.Message);
+            }
         }
 
         private static void Registration()
@@ -64,11 +82,6 @@ namespace MyConsoleNoteBook
             {
                 Console.Error.WriteLine(ex.Message);
             }
-           
-
-
-
-
         }
 
         private static string GetPassword()

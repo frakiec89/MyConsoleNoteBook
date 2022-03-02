@@ -19,5 +19,10 @@ namespace MyConsoleNoteBook
         {
             throw new NotImplementedException();
         }
+
+        internal static bool Authorization(string login, string password, out string name)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
