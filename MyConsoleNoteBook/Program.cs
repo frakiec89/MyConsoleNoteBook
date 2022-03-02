@@ -43,7 +43,31 @@ namespace MyConsoleNoteBook
         {
            Console.WriteLine("добавление  нового пользователя");
            string name = GetStringConsole("Укажите имя пользователя");
+           string login = GetStringConsole("Укажите логин пользователя");
            string password = GetPassword();
+
+            try
+            {
+                if (UserService.IsCheckUser(login) == false)
+                {
+                    UserService.AddUser(name, login, password);
+                    Console.WriteLine("Ура - пользователь добавлен");
+                }
+                else
+                {
+                    Console.WriteLine("нам очень  жаль ( но такой  логин уже есть");
+                    Console.WriteLine("не  отчаивайтесь, давайте попробуем еще раз");
+                    Registration(); // рекурсивно 
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine(ex.Message);
+            }
+           
+
+
+
 
         }
 
