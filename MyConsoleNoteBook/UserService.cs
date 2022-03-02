@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace MyConsoleNoteBook
 {
@@ -12,7 +14,15 @@ namespace MyConsoleNoteBook
         /// <exception cref="NotImplementedException"></exception>
         internal static bool IsCheckUser(string login)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using DB.MsSqlContext db = new DB.MsSqlContext();
+                return  db.Users.Any(x => x.Login == login);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ошибка  обращения  к базе данных");
+            }
         }
 
         public static void AddUser(string name, string login, string password)
@@ -41,5 +51,7 @@ namespace MyConsoleNoteBook
         {
             throw new NotImplementedException();
         }
+
+       
     }
 }
