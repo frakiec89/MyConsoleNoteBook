@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-
 namespace MyConsoleNoteBook.DB
 {
     public class MsSqlContext : DbContext
@@ -29,6 +28,6 @@ namespace MyConsoleNoteBook.DB
     }
 }
 
-//команжы миграции 
-//add-magration 
+//команды миграции 
+//add-migration 
 //update-database
