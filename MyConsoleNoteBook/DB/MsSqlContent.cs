@@ -4,7 +4,7 @@ namespace MyConsoleNoteBook.DB
 {
     public class MsSqlContext : DbContext
     {
-        static string server = "192.168.10.1";
+        static string server = "192.168.10.134";
         static string database = "Ahtyamov_for_IS-20_02_notebook"; // новая -  у каждого  своя
         static string user = "stud";
         static string password = "stud";
@@ -22,7 +22,7 @@ namespace MyConsoleNoteBook.DB
 
         private string GetConnectionString (string server , string database, string user, string password)
         {
-            return $"Server = {server}; Database={database};User Id = {user}; Password={password}; connect timeout=50;";
+            return $"Server = {server}; Database={database};User Id = {user}; Password={password}; connect timeout=5;";
         }
 
 
