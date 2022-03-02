@@ -14,7 +14,7 @@ namespace MyConsoleNoteBook
 
                 switch(Console.ReadLine().ToLower().TrimStart().TrimEnd())
                 {
-                    case "log in": Authorization(); break;
+                    case "log-in": Authorization(); break;
                     case "exit": return;
                     default: Console.WriteLine("команда не опознана"); break;
                 }
@@ -24,7 +24,7 @@ namespace MyConsoleNoteBook
         private static void MenuPrint() // вывод на  экран  список  доступных команд
         {
             string exit = "exit";
-            string login = "log in"; // команды
+            string login = "log-in"; // команды
 
             Console.WriteLine($"Для выхода из программы введите \"{exit}\"");
             Console.WriteLine($"Для входа в систему  введите  \"{login}\"");
@@ -32,8 +32,30 @@ namespace MyConsoleNoteBook
 
         private static void Authorization()
         {
+
+        }
+
+        private static void Registration()
+        {
            Console.WriteLine("добавление  нового пользователя");
-            string name = GetStringConsole("Укажите имя пользователя");
+           string name = GetStringConsole("Укажите имя пользователя");
+           string password = GetPassword();
+
+        }
+
+        private static string GetPassword()
+        {
+            string p1 = GetStringConsole("введите пароль");
+            string p2 = GetStringConsole("повторите пароль");
+
+            if (p1 == p2)
+                return p1;
+            else
+            {
+                Console.WriteLine("пароли не  совпадают  - не  надо  так (");
+                Console.WriteLine("давайте попробуем еще раз");
+                return GetPassword();
+            }
         }
 
         private static string GetStringConsole(string message)
@@ -44,9 +66,9 @@ namespace MyConsoleNoteBook
             {
                 Console.WriteLine("вы ввели пустой параметр - не  надо  так (");
                 Console.WriteLine("давайте попробуем еще раз");
-                return GetStringConsole(message);
+                return GetStringConsole(message); // рекурсивно
             }
-            return buffer.TrimStart().TrimEnd();
+            return buffer.TrimStart().TrimEnd();   // frakiec89 ник нейм  на  гите
         }
     }
 }
