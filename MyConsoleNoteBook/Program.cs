@@ -28,10 +28,21 @@ namespace MyConsoleNoteBook
             string exit = "exit";
             string login = "log-in"; // команды
             string registration = "registration";
+            string getRecord = "getrecord";
+            string addRecord = "addrecord";
 
             Console.WriteLine($"Для выхода из программы введите \"{exit}\"");
             Console.WriteLine($"Для входа в систему  введите  \"{login}\"");
             Console.WriteLine($"Для регистрации в системе  введите  \"{registration}\"");
+
+            if (UserService.UserAuthorizationId >0)
+            {
+                Console.WriteLine($"чтобы  получить записи  введите \"{getRecord}\"");
+                Console.WriteLine($"что бы добавить записб введите \"{addRecord}\"");
+            }
+
+
+
         }
 
         private static void Authorization()
